@@ -7,6 +7,8 @@ import 'package:flutter_app/components/custom_image_card.dart';
 import 'package:flutter_app/components/view_title_bar.dart';
 import 'package:flutter_app/components/title_bar.dart';
 import 'package:flutter_app/services/navigation_service.dart';
+import 'package:flutter_app/components/CustomPieChart.dart';
+
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -24,30 +26,46 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const ViewTitleBar(title: "Dashboard", xPadding: 18),
-          const Padding(
-            padding: EdgeInsets.only(top: 14, left: 14, right: 14, bottom: 24),
-            child: CustomCard(
-              title: "Monthly Overview",
-              subtitle: "Your Carbon footprint",
-              color: AppColor.cardGreen,
-              child: Chart(),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const ViewTitleBar(title: "Dashboard", xPadding: 18),
+            const Padding(
+              padding: EdgeInsets.only(top: 14, left: 14, right: 14, bottom: 24),
+              child: CustomCard(
+                title: "Monthly Overview",
+                subtitle: "Your Carbon footprint",
+                color: AppColor.cardGreen,
+                child: Chart(),
+              ),
             ),
-          ),
-          TitleBar(title: "Tipps to reduce carbon emissions", onMorePressed: _showAllTipps, xPadding: 18),
-          const CardSlider(
-            initialPadding: 14,
-            children: [
-              CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
-              CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
-              CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
-            ]
-          ),
-        ],
-      ),
+            const Padding(
+              padding: EdgeInsets.only(top: 0, left: 14, right: 14, bottom: 24),
+              child: CustomCard(
+                title: "Monthly Overview",
+                subtitle: "Your Carbon footprint",
+                color: AppColor.cardGreen,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 24, left: 0, right: 0, bottom: 24),
+                  child: CustomPieChart(),
+                ),
+              ),
+            ),
+            TitleBar(title: "Tipps to reduce carbon emissions", onMorePressed: _showAllTipps, xPadding: 18),
+            const CardSlider(
+              initialPadding: 14,
+              children: [
+                CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
+                CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
+                CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
+              ]
+            ),
+            SizedBox(height: 40),
+          ],
+        ),
+      )
     );
   }
+
 }

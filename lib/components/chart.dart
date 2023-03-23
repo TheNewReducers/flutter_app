@@ -48,14 +48,17 @@ class _ChartState extends State<Chart> {
     );
     Widget text;
     switch (value.toInt()) {
-      case 2:
+      case 1:
         text = const Text('MAR', style: style);
         break;
-      case 5:
-        text = const Text('JUN', style: style);
+      case 4:
+        text = const Text('ARP', style: style);
         break;
-      case 8:
-        text = const Text('SEP', style: style);
+      case 7:
+        text = const Text('MAY', style: style);
+        break;
+      case 10:
+        text = const Text('JUN', style: style);
         break;
       default:
         text = const Text('', style: style);

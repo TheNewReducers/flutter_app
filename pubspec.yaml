@@ -14,6 +14,9 @@ dependencies:
   path_provider: ^2.0.14
   fl_chart: ^0.61.0
   persistent_bottom_nav_bar: any
+  pie_chart: ^5.3.2
+  http: ^0.13.5
+  intl: ^0.18.0
   
 dev_dependencies:
   flutter_test:

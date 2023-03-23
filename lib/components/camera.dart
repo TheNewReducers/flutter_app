@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 class Camera extends StatefulWidget {
-  const Camera({Key? key, required this.onReadyChange}) : super(key: key);
+  const Camera({Key? key, required this.onReadyChange, required this.onPhotoTaken, required this.isLoading}) : super(key: key);
 
+  final bool isLoading;
   final Function(bool) onReadyChange;
+  final Function(File) onPhotoTaken;
 
   @override
   State<Camera> createState() => _CameraState();
@@ -78,7 +82,8 @@ class _CameraState extends State<Camera> {
     });
 
     try {
-      await controller!.takePicture();
+     final file = await controller!.takePicture();
+     widget.onPhotoTaken(File(file.path));
     } catch (e) {
       print(e);
     }
@@ -90,6 +95,16 @@ class _CameraState extends State<Camera> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.isLoading) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Icon(Icons.hourglass_empty_rounded, color: Colors.black38, size: 60),
+          SizedBox(height: 12),
+          SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 3, color: Colors.white38,)),
+        ],
+      );
+    }
     if (controller == null || !controller!.value.isInitialized) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,

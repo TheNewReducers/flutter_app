@@ -4,6 +4,9 @@ import 'package:flutter_app/components/chart.dart';
 import 'package:flutter_app/components/custom_card.dart';
 import 'package:flutter_app/components/history_item.dart';
 import 'package:flutter_app/components/view_title_bar.dart';
+import 'package:flutter_app/models/receipt.dart';
+import 'package:flutter_app/models/receipt_item.dart';
+import 'package:flutter_app/services/navigation_service.dart';
 
 class History extends StatefulWidget {
   const History({super.key});
@@ -13,6 +16,11 @@ class History extends StatefulWidget {
 }
 
 class _HistoryState extends State<History> {
+
+  void onItemTap(Receipt receipt) {
+    NavigationService.instance.pushNamed("/details", arguments: receipt);
+  }
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,11 +32,24 @@ class _HistoryState extends State<History> {
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
               child: ListView.builder(
                 itemCount: 10,
-                itemBuilder: (context, index) => Padding(
-                  padding: EdgeInsets.symmetric(vertical: 7),
-                  child: HistoryItem(carbon: 2.3, title: "Rewe Innsbruck", color: AppColor.cardGreen, createdAt: DateTime.now()),
-                ),
-              )
+                itemBuilder: (context, index) {
+                  final item = Receipt(
+                    index.toString(), 
+                    "Rewe Innsbruck", [
+                      ReceiptItem(carbon: 2.4, category: "Brot", title: "Sonnen Toastbrot"),
+                      ReceiptItem(carbon: 2.4, category: "Brot", title: "Sonnen Toastbrot"),
+                      ReceiptItem(carbon: 2.4, category: "Brot", title: "Sonnen Toastbrot")
+                    ], DateTime.now()
+                  ); 
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 7),
+                    child: InkWell(
+                      onTap: () => onItemTap(item),
+                      child: HistoryItem(receipt: item, color: AppColor.cardGreen),
+                    )
+                  );
+                }
+              ),
             )
           )
         ],

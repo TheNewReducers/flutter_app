@@ -1,8 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter_app/components/camera.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/services/api.dart';
 
 class PhotoDialog extends StatefulWidget {
 
@@ -14,6 +13,7 @@ class PhotoDialog extends StatefulWidget {
 
 class _PhotoDialogState extends State<PhotoDialog> {
   bool isReady = false;
+  bool isProcessing = false;
   
   // Future<String> _path() async {
   //   final Directory extDir = await getTemporaryDirectory();
@@ -21,6 +21,19 @@ class _PhotoDialogState extends State<PhotoDialog> {
   //       await Directory('${extDir.path}/test').create(recursive: true);
   //   return '${testDir.path}/${DateTime.now().millisecondsSinceEpoch}.jpg';
   // }
+
+  void onPhotoTaken(File file) async {
+    setState(() {
+      isProcessing = true;
+    });
+
+    //await Future.delayed(const Duration(seconds: 2));
+    String result = await Api.uploadImage(file);
+
+    setState(() {
+      isProcessing = false;
+    });
+  }
 
   void onReadyChange(bool ready) {
     setState(() {
@@ -42,7 +55,7 @@ class _PhotoDialogState extends State<PhotoDialog> {
         ),
         child: AnimatedSize(
           duration: const Duration(milliseconds: 200),
-          child: SizedBox(height: isReady ? MediaQuery.of(context).size.height - 200 : 300, child: Camera(onReadyChange: onReadyChange)),
+          child: SizedBox(height: !isReady || isProcessing ? 300 : MediaQuery.of(context).size.height - 200, child: Camera(onReadyChange: onReadyChange, onPhotoTaken: onPhotoTaken, isLoading: isProcessing,)),
         ),
       ),
     );
