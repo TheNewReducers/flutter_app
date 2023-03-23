@@ -4,6 +4,7 @@ import 'package:flutter_app/components/card_slider.dart';
 import 'package:flutter_app/components/chart.dart';
 import 'package:flutter_app/components/custom_card.dart';
 import 'package:flutter_app/components/custom_image_card.dart';
+import 'package:flutter_app/components/view_title_bar.dart';
 import 'package:flutter_app/components/title_bar.dart';
 import 'package:flutter_app/services/navigation_service.dart';
 
@@ -26,6 +27,7 @@ class _DashboardState extends State<Dashboard> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          const ViewTitleBar(title: "Dashboard", xPadding: 18),
           const Padding(
             padding: EdgeInsets.only(top: 14, left: 14, right: 14, bottom: 24),
             child: CustomCard(
