@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app_colors.dart';
+import 'package:flutter_app/app_state.dart';
 import 'package:flutter_app/components/chart.dart';
 import 'package:flutter_app/components/custom_card.dart';
 import 'package:flutter_app/components/custom_image_card.dart';
@@ -27,6 +28,17 @@ class _DashboardState extends State<Dashboard> {
     NavigationService.instance.pushNamed("/tipps");
   }
 
+  Map<String, double> dataMap() {
+    Map<String, double> dataMap = {};
+    for (var receipt in AppState.receipts) {
+      for (var i = 0; i < receipt.items.length; i++) {
+        double base = dataMap[receipt.items[i].category] ?? 0;
+        dataMap[receipt.items[i].category] = base + receipt.items[i].carbon;
+      }
+    }
+    return dataMap;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -44,15 +56,15 @@ class _DashboardState extends State<Dashboard> {
                 child: Chart(),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 0, left: 14, right: 14, bottom: 24),
+            Padding(
+              padding: const EdgeInsets.only(top: 0, left: 14, right: 14, bottom: 24),
               child: CustomCard(
                 title: "Monthly Overview",
                 subtitle: "Your Carbon footprint in kg",
                 color: AppColor.cardGreen,
                 child: Padding(
-                  padding: EdgeInsets.only(top: 24, left: 0, right: 0, bottom: 24),
-                  child: CustomPieChart(),
+                  padding: const EdgeInsets.only(top: 24, left: 0, right: 0, bottom: 24),
+                  child: CustomPieChart(data: dataMap()),
                 ),
               ),
             ),

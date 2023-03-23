@@ -16,6 +16,15 @@ class DetailsScreen extends StatefulWidget {
 
 class _DetailsScreenState extends State<DetailsScreen> {
 
+  Map<String, double> dataMap() {
+    Map<String, double> dataMap = {};
+    for (var i = 0; i < widget.receipt.items.length; i++) {
+      double base = dataMap[widget.receipt.items[i].category] ?? 0;
+      dataMap[widget.receipt.items[i].category] = base + widget.receipt.items[i].carbon;
+    }
+    return dataMap;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +47,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
         child: Column(
           children: [
             const SizedBox(height: 42),
-            const CustomPieChart(),
+            CustomPieChart(data: dataMap()),
             const SizedBox(height: 42),
             Padding(
               padding: const EdgeInsets.only(top: 0, left: 14, right: 14, bottom: 24),

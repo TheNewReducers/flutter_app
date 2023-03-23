@@ -4,31 +4,36 @@ import 'package:pie_chart/pie_chart.dart';
 import '../app_colors.dart';
 
 class CustomPieChart extends StatefulWidget {
-  const CustomPieChart({super.key});
+  const CustomPieChart({super.key, required this.data});
+  
+  final Map<String, double> data;
 
   @override
   State<CustomPieChart> createState() => _CustomPieChartState();
 }
 
 class _CustomPieChartState extends State<CustomPieChart> {
-  Map<String, double> dataMap = {
-    "Flutter": 5,
-    "React": 3,
-    "Xamarin": 2,
-    "Ionic": 2,
-  };
+  // Map<String, double> dataMap;
+  //  = {
+  //   "Flutter": 5,
+  //   "React": 3,
+  //   "Xamarin": 2,
+  //   "Ionic": 2,
+  // };
 
   List<Color> colorList = [
     AppColor.grey,
     AppColor.blue,
     AppColor.yellow,
     AppColor.normalGreen,
+    AppColor.darkGreen //,
+    // AppColor.
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
     return PieChart(
-            dataMap: dataMap,
+            dataMap: widget.data,
             animationDuration: const Duration(milliseconds: 1000),
             chartLegendSpacing: 32,
             chartRadius: MediaQuery.of(context).size.width / 3.2,
