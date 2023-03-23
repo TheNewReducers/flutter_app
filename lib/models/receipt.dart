@@ -27,9 +27,9 @@ class Receipt {
 
   Receipt.fromJson(Map<String, dynamic> json)
       : id = uuid.v5(Uuid.NAMESPACE_URL, 'com.example.flutter_app'),
-        title = json['store']['name']['city'],
+        title = json['store']['name'],
         items = (json['items'] as List<dynamic>)
             .map((item) => ReceiptItem.fromJson(item))
             .toList(),
-        createdAt = DateTime.parse(json['date']);  
+        createdAt = DateTime.now();  
 }

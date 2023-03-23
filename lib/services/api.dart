@@ -5,7 +5,7 @@ abstract class Api {
   static const baseUrl = 'https://123.123.123.123:80/';
 
   static Future<String> uploadImage(File file) async {
-    var request = http.MultipartRequest('POST', Uri.parse("http://161.97.116.245:8000/upload-file/"));
+    var request = http.MultipartRequest('POST', Uri.parse("http://161.97.116.245:8000/uploadfile"));
     request.files.add(http.MultipartFile.fromBytes("file", File(file.path).readAsBytesSync(), filename: file.path));
     var stream = await request.send();
     var res = await http.Response.fromStream(stream);

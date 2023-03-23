@@ -31,19 +31,25 @@ class _HistoryState extends State<History> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-              child: ListView.builder(
-                itemCount: AppState.receipts.length,
-                itemBuilder: (context, index) {
-                  final item = AppState.receipts[index];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 7),
-                    child: InkWell(
-                      onTap: () => onItemTap(item),
-                      child: HistoryItem(receipt: item, color: AppColor.cardGreen),
-                    )
+              child: StreamBuilder(
+                stream: AppState.receiptsStream,
+                initialData: AppState.receipts,
+                builder: (context, snapshot) {
+                  return ListView.builder(
+                    itemCount: AppState.receipts.length,
+                    itemBuilder: (context, index) {
+                      final item = AppState.receipts[index];
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 7),
+                        child: InkWell(
+                          onTap: () => onItemTap(item),
+                          child: HistoryItem(receipt: item, color: AppColor.cardGreen),
+                        )
+                      );
+                    }
                   );
-                }
-              ),
+                },
+              )
             )
           )
         ],

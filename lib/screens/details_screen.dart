@@ -53,7 +53,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(item.title, style: const TextStyle(fontSize: 16)),
-                          Text(item.carbon.toStringAsPrecision(1) + "kg CO2", style: const TextStyle(fontSize: 16)),
+                          Text(item.carbon.toStringAsFixed(1) + "kg CO2", style: const TextStyle(fontSize: 16)),
                         ],
                       ))).toList(),
                       Container(
@@ -68,7 +68,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text("Sum", style: TextStyle(fontSize: 16)),
-                          Text(widget.receipt.totalCarbon.toStringAsPrecision(1) + "kg CO2", style: const TextStyle(fontSize: 16)),
+                          Text(widget.receipt.totalCarbon.toStringAsFixed(1) + "kg CO2", style: const TextStyle(fontSize: 16)),
                         ],
                       )
                     ],

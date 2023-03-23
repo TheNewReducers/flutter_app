@@ -5,6 +5,7 @@ import 'package:flutter_app/components/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/receipt.dart';
 import 'package:flutter_app/services/api.dart';
+import 'package:flutter_app/services/navigation_service.dart';
 
 class PhotoDialog extends StatefulWidget {
 
@@ -34,12 +35,13 @@ class _PhotoDialogState extends State<PhotoDialog> {
     // String result = await Api.uploadImage(file);
     String result = await Api.uploadImageDummy(file);
     Receipt receipt = Receipt.fromJson(jsonDecode(result));
-
     AppState.addReceipt(receipt);
 
     setState(() {
       isProcessing = false;
     });
+
+    NavigationService.instance.pushNamed("/details", arguments: receipt);
   }
 
   void onReadyChange(bool ready) {

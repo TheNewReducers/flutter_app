@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app_colors.dart';
 import 'package:flutter_app/components/card_slider.dart';
@@ -44,7 +46,7 @@ class _DashboardState extends State<Dashboard> {
               padding: EdgeInsets.only(top: 0, left: 14, right: 14, bottom: 24),
               child: CustomCard(
                 title: "Monthly Overview",
-                subtitle: "Your Carbon footprint",
+                subtitle: "Your Carbon footprint in kg",
                 color: AppColor.cardGreen,
                 child: Padding(
                   padding: EdgeInsets.only(top: 24, left: 0, right: 0, bottom: 24),
@@ -61,11 +63,26 @@ class _DashboardState extends State<Dashboard> {
                 CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
               ]
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
           ],
         ),
       )
     );
   }
 
+
+// final Directory imageDir = Directory("assets/imagesTips");
+// final List<String> imagePaths = imageDir.listSync().map((file) => file.path).toList();
+
+
+// ListView.builder(
+//   itemCount: imagePaths.length,
+//   itemBuilder: (BuildContext context, int index) {
+//     return CustomImageCard(
+//       image: AssetImage(imagePaths[index]),
+//       title: "Test",
+//       color: AppColor.cardGreen,
+//     );
+//   },
+// );
 }
