@@ -1,48 +1,45 @@
 import 'package:flutter/material.dart';
 
 class CustomImageCard extends StatelessWidget {
-  const CustomImageCard({super.key, required this.image, required this.title, required this.color});
+  const CustomImageCard({super.key, required this.image, required this.child, this.onTap, required this.color});
 
   final ImageProvider image;
-  final String title;
   final Color color;
+  final Widget child;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(32),
-        color: color,
-      ),
-      width: 280,
-      height: 180,
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        children: [
-          Container(
-            height: 124,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(topLeft: Radius.circular(32), topRight: Radius.circular(32)),
-              image: DecorationImage(
-                image: image,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 14, left: 24, right: 24, bottom: 7),
-            child: Column(
+    const imageHeight = 180.0;
+
+    return InkWell(
+      onTap: onTap,
+      child: SizedBox(
+        width: 240,
+        height: 320,
+        child: Stack(
+          children: [
+            Column(
               children: [
-                Row(
-                  children: [
-                    Text(title, style: const TextStyle(fontSize: 18, color: Colors.black87)),
-                  ],
+                const SizedBox(height: imageHeight - 46),
+                Container(
+                  decoration: BoxDecoration(
+                    color: color,
+                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(32), bottomRight: Radius.circular(32))
+                  ),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 46),
+                      child
+                    ],
+                  )
                 ),
               ],
             ),
-          ),
-        ],
-      ),
+            Positioned(child: Image(image: image), top: 0, left: 0, right: 0,)
+          ],
+        ),
+      )
     );
   }
 }

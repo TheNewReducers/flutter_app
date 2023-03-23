@@ -88,7 +88,7 @@ class _DashboardState extends State<Dashboard> {
                 CardSlider(
                   initialPadding: 14,
                   children: [
-                    ...Tipps.map((t) => TippCard(tipp: t)).toList(),
+                    ...constantsTipps.map((t) => TippCard(tipp: t)).toList(),
                   ]
                 ).animate()
                   .slideY(duration: const Duration(milliseconds: 700), begin: 0.12, end: 0, curve: Curves.easeInOut)

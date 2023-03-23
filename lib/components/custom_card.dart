@@ -33,7 +33,11 @@ class CustomCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Text(title, style: const TextStyle(fontSize: 18, color: Colors.black87)),
+                          Text(title, style: const TextStyle(
+                            fontSize: 18, 
+                            color: Colors.black87,
+                            fontWeight: FontWeight.bold
+                            )),
                         ],
                       ),
                       const SizedBox(height: 4),
