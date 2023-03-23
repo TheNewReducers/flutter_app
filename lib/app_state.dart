@@ -24,4 +24,11 @@ abstract class AppState {// Obtain shared preferences.
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList("receipts", receipts.map<String>((e) => jsonEncode(e.toJson())).toList());
   }
+
+  static Future<void> load() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final List<String> receiptsJson = prefs.getStringList("receipts") ?? [];
+    receipts = receiptsJson.map<Receipt>((e) => Receipt.fromJson(jsonDecode(e))).toList();
+    _receiptsController.add(receipts);
+  }
 }
