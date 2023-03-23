@@ -2,8 +2,9 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 class Camera extends StatefulWidget {
-  /// Default Constructor
-  const Camera({Key? key}) : super(key: key);
+  const Camera({Key? key, required this.onReadyChange}) : super(key: key);
+
+  final Function(bool) onReadyChange;
 
   @override
   State<Camera> createState() => _CameraState();
@@ -23,26 +24,29 @@ class _CameraState extends State<Camera> {
 
   void init() async {
     await loadCameras();
-    openCamera();
+    await openCamera();
+    await Future.delayed(const Duration(milliseconds: 500));
+    widget.onReadyChange(true);
+    setState(() {});
   }
 
   Future<void> loadCameras() async {
     _cameras = await availableCameras();
   }
 
-  void openCamera() {
+  Future<void> openCamera() async {
     List<CameraDescription>? cameras = _cameras;
     if (cameras == null || cameras.isEmpty) {
       return;
     }
 
     controller = CameraController(cameras[0], ResolutionPreset.max);
-    controller!.initialize().then((_) {
+    try {
+      await controller!.initialize();
       if (!mounted) {
         return;
       }
-      setState(() {});
-    }).catchError((Object e) {
+    } catch (e) {
       if (e is CameraException) {
         switch (e.code) {
           case 'CameraAccessDenied':
@@ -57,7 +61,7 @@ class _CameraState extends State<Camera> {
             break;
         }
       }
-    });
+    }
   }
 
   @override

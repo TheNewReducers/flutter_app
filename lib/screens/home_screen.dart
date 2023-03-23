@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/app_colors.dart';
 import 'package:flutter_app/components/chart.dart';
+import 'package:flutter_app/components/custom_card.dart';
 import 'package:flutter_app/dialog/photo_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,15 +20,29 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Chart(),
-          ]
+      backgroundColor: AppColor.backgroundColor,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: const [
+              CustomCard(
+                title: "Monthly Overview",
+                subtitle: "Your Carbon footprint",
+                color: AppColor.cardGreen,
+                child: Chart(),
+              ),
+            ]
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: AppColor.normalGreen,
+        unselectedItemColor: Colors.black,
+        backgroundColor: AppColor.darkGreen,
+        elevation: 0,
+
         onTap: (value) {
           switch (value) {
             case 0:
@@ -38,18 +54,18 @@ class _HomeScreenState extends State<HomeScreen> {
               break;
           }
         },
-        items: [
-          const BottomNavigationBarItem(
-            icon: const Icon(Icons.home_rounded),
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_rounded),
             label: 'Home',
           ),
-          const BottomNavigationBarItem(
-            icon: const Icon(Icons.add_a_photo),
-            label: 'Take Photo',
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_a_photo),
+            label: 'New Scan',
           ),
-          const BottomNavigationBarItem(
-            icon: const Icon(Icons.history),
-            label: 'Historie',
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: 'History',
           ),
         ],
       ),

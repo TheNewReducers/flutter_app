@@ -1,6 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+import '../app_colors.dart';
+
 class Chart extends StatefulWidget {
   const Chart({super.key});
 
@@ -59,7 +61,8 @@ class _ChartState extends State<Chart> {
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: 16,
+      fontSize: 12,
+      color: AppColor.grey
     );
     Widget text;
     switch (value.toInt()) {
@@ -87,6 +90,7 @@ class _ChartState extends State<Chart> {
     const style = TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 12,
+      color: AppColor.grey
     );
     String text;
     switch (value.toInt()) {
@@ -136,10 +140,10 @@ class _ChartState extends State<Chart> {
           ),
         ),
       ),
-      borderData: FlBorderData(
-        show: true,
-        border: Border.all(color: const Color(0xff37434d)),
-      ),
+      // borderData: FlBorderData(
+      //   show: true,
+      //   border: Border.all(color: const Color(0xff37434d)),
+      // ),
       minX: 0,
       maxX: 11,
       minY: 0,
@@ -185,12 +189,13 @@ class _ChartState extends State<Chart> {
         drawHorizontalLine: true,
         verticalInterval: 1,
         horizontalInterval: 1,
-        getDrawingVerticalLine: (value) {
-          return FlLine(
-            color: const Color(0xff37434d),
-            strokeWidth: 1,
-          );
-        },
+        
+        // getDrawingVerticalLine: (value) {
+        //   return FlLine(
+        //     color: const Color(0xff37434d),
+        //     strokeWidth: 1,
+        //   );
+        // },
         getDrawingHorizontalLine: (value) {
           return FlLine(
             color: const Color(0xff37434d),
