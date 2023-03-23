@@ -54,18 +54,20 @@ class _DashboardState extends State<Dashboard> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const ViewTitleBar(title: "Dashboard", xPadding: 18),
-                const Padding(
-                  padding: EdgeInsets.only(top: 14, left: 14, right: 14, bottom: 24),
+                Padding(
+                  padding: const EdgeInsets.only(top: 14, left: 14, right: 14, bottom: 24),
                   child: CustomCard(
+                    shareable: true,
                     title: "Monthly Overview",
                     subtitle: "Your Carbon footprint",
                     color: AppColor.cardGreen,
-                    child: Chart(),
+                    child: const Chart(),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 0, left: 14, right: 14, bottom: 24),
                   child: CustomCard(
+                    shareable: true,
                     title: "Monthly Overview",
                     subtitle: "Your Carbon footprint in kg",
                     color: AppColor.cardGreen,
