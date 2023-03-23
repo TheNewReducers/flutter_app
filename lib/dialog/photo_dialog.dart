@@ -41,6 +41,7 @@ class _PhotoDialogState extends State<PhotoDialog> {
       isProcessing = false;
     });
 
+    Navigator.of(context).pop();
     NavigationService.instance.pushNamed("/details", arguments: receipt);
   }
 

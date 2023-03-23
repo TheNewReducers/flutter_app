@@ -32,7 +32,7 @@ class HistoryItem extends StatelessWidget {
           ),
           Row(
             children: [
-              Text(receipt.totalCarbon.toStringAsPrecision(1) + "kg", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Text(receipt.totalCarbon.toStringAsFixed(1) + "kg", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(width: 4),
               const Text("CO", style: TextStyle(fontSize: 18)),
               const Padding(

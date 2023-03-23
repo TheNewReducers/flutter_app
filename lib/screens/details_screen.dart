@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_app/app_colors.dart';
 import 'package:flutter_app/components/CustomPieChart.dart';
 import 'package:flutter_app/components/custom_card.dart';
@@ -75,7 +76,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   ),
                 )
               ),
-            ),
+            ).animate()
+            .slideY(duration: const Duration(milliseconds: 700), begin: 0.12, end: 0, curve: Curves.easeInOut)
+            .fadeIn(duration: const Duration(milliseconds: 700), curve: Curves.easeInOut)
           ],
         ),
       )

@@ -3,7 +3,8 @@
       {
         "Tip": "Choose plant-based proteins",
         "Why it's important": "Plant-based foods generally have a lower carbon footprint than meat and dairy. Animal agriculture generates a significant amount of greenhouse gas emissions, particularly methane from livestock. By choosing plant-based proteins, you can help reduce these emissions.",
-        "Potential CO2 savings per meal": "3.3"
+        "Potential CO2 savings per meal": "3.3",
+        "image": "assets/imagesTips/"
       },
       {
         "Tip": "Buy seasonal and local produce",
