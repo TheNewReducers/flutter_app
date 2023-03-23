@@ -26,8 +26,10 @@ class _CustomPieChartState extends State<CustomPieChart> {
     AppColor.blue,
     AppColor.yellow,
     AppColor.normalGreen,
-    AppColor.darkGreen //,
-    // AppColor.
+    AppColor.darkGreen,
+    AppColor.pink,
+    AppColor.dark,
+    AppColor.purple
   ];
 
   @override

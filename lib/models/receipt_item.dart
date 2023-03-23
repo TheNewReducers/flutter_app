@@ -9,4 +9,10 @@ class ReceiptItem {
       : title = json['name'],
         category = json['category'],
         carbon = json['price'];
+
+  Map<String, dynamic> toJson() => {
+    'title': title,
+    'category': category,
+    'carbon': carbon,
+  };
 }

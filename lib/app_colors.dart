@@ -8,5 +8,8 @@ abstract class AppColor {
   static const Color blue =  Color(0xFF53D8FB);
   static const Color yellow =  Color(0xFFF9DB6D);
   static const Color cardGreen =  Color(0xFFD9EBE3);
+  static const Color pink =  Color(0xFFE0607E);
+  static const Color purple =  Color(0xFF816E94);
+  static const Color dark =  Color(0xFF393D3F);
 
 }

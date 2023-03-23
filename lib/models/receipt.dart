@@ -32,4 +32,11 @@ class Receipt {
             .map((item) => ReceiptItem.fromJson(item))
             .toList(),
         createdAt = DateTime.now();  
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'title': title,
+    'items': items.map((item) => item.toJson()).toList(),
+    'createdAt': createdAt.toIso8601String(),
+  };
 }

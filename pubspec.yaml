@@ -19,6 +19,7 @@ dependencies:
   intl: ^0.18.0
   uuid: ^3.0.7
   flutter_animate: ^4.1.0
+  shared_preferences: ^2.0.20
   
 dev_dependencies:
   flutter_test:
