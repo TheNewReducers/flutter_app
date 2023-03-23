@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/dialog/photo_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -8,38 +9,48 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+  void _showPhotoDialog() {
+    showDialog(context: context, builder: (context) => const PhotoDialog());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("First Page"),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+          children: [
+            
+          ]
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (value) {
+          switch (value) {
+            case 0:
+              break;
+            case 1:
+              _showPhotoDialog();
+              break;
+            case 2:
+              break;
+          }
+        },
+        items: [
+          const BottomNavigationBarItem(
+            icon: const Icon(Icons.home_rounded),
+            label: 'Home',
+          ),
+          const BottomNavigationBarItem(
+            icon: const Icon(Icons.add_a_photo),
+            label: 'Take Photo',
+          ),
+          const BottomNavigationBarItem(
+            icon: const Icon(Icons.history),
+            label: 'Historie',
+          ),
+        ],
       ),
     );
   }
