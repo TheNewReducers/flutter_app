@@ -1,17 +1,20 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_app/app_colors.dart';
 import 'package:flutter_app/app_state.dart';
 import 'package:flutter_app/components/chart.dart';
 import 'package:flutter_app/components/custom_card.dart';
 import 'package:flutter_app/components/custom_image_card.dart';
+import 'package:flutter_app/components/tipp_card.dart';
 import 'package:flutter_app/components/view_title_bar.dart';
 import 'package:flutter_app/components/title_bar.dart';
 import 'package:flutter_app/services/navigation_service.dart';
 import 'package:flutter_app/components/CustomPieChart.dart';
 
 import '../../components/card_slider.dart';
+import '../../constants/tipps.dart';
 
 
 class Dashboard extends StatefulWidget {
@@ -59,33 +62,37 @@ class _DashboardState extends State<Dashboard> {
                   child: CustomCard(
                     shareable: true,
                     title: "Monthly Overview",
-                    subtitle: "Your Carbon footprint",
+                    subtitle: "Your carbon footprint",
                     color: AppColor.cardGreen,
                     child: const Chart(),
                   ),
-                ),
+                ).animate()
+                  .slideY(duration: const Duration(milliseconds: 700), begin: 0.12, end: 0, curve: Curves.easeInOut)
+                  .fadeIn(duration: const Duration(milliseconds: 700), curve: Curves.easeInOut),
                 Padding(
                   padding: const EdgeInsets.only(top: 0, left: 14, right: 14, bottom: 24),
                   child: CustomCard(
                     shareable: true,
                     title: "Monthly Overview",
-                    subtitle: "Your Carbon footprint in kg",
+                    subtitle: "Your carbon footprint distribution",
                     color: AppColor.cardGreen,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 24, left: 0, right: 0, bottom: 24),
                       child: data.isEmpty ? Container(height: 300, child: const Center(child: Text("No Data"))) : CustomPieChart(data: data),
                     ),
                   ),
-                ),
+                ).animate()
+                  .slideY(duration: const Duration(milliseconds: 700), begin: 0.12, end: 0, curve: Curves.easeInOut)
+                  .fadeIn(duration: const Duration(milliseconds: 700), curve: Curves.easeInOut),
                 TitleBar(title: "Tipps to reduce carbon emissions", onMorePressed: _showAllTipps, xPadding: 18),
-                const CardSlider(
+                CardSlider(
                   initialPadding: 14,
                   children: [
-                    CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
-                    CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
-                    CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
+                    ...Tipps.map((t) => TippCard(tipp: t)).toList(),
                   ]
-                ),
+                ).animate()
+                  .slideY(duration: const Duration(milliseconds: 700), begin: 0.12, end: 0, curve: Curves.easeInOut)
+                  .fadeIn(duration: const Duration(milliseconds: 700), curve: Curves.easeInOut),
                 // ListView.builder(
                 //       itemCount: imagePaths.length,
                 //       itemBuilder: (BuildContext context, int index) {
