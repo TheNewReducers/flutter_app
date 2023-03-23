@@ -32,8 +32,8 @@ class _PhotoDialogState extends State<PhotoDialog> {
     });
 
     //await Future.delayed(const Duration(seconds: 2));
-    // String result = await Api.uploadImage(file);
-    String result = await Api.uploadImageDummy(file);
+    String result = await Api.uploadImage(file);
+    // String result = await Api.uploadImageDummy(file);
     Receipt receipt = Receipt.parseFromApi(jsonDecode(result));
     AppState.addReceipt(receipt);
 
