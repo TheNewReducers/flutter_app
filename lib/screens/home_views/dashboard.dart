@@ -5,6 +5,7 @@ import 'package:flutter_app/components/chart.dart';
 import 'package:flutter_app/components/custom_card.dart';
 import 'package:flutter_app/components/custom_image_card.dart';
 import 'package:flutter_app/components/title_bar.dart';
+import 'package:flutter_app/services/navigation_service.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -14,6 +15,11 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+
+  void _showAllTipps() {
+    NavigationService.instance.pushNamed("/tipps");
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,7 +35,7 @@ class _DashboardState extends State<Dashboard> {
               child: Chart(),
             ),
           ),
-          TitleBar(title: "Tips for better health", onMorePressed: () => print("See more"), xPadding: 18),
+          TitleBar(title: "Tipps to reduce carbon emissions", onMorePressed: _showAllTipps, xPadding: 18),
           const CardSlider(
             initialPadding: 14,
             children: [

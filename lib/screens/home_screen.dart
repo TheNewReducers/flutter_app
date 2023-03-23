@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.history_rounded),
-        title: ("Settings"),
+        title: ("History"),
         activeColorPrimary: AppColor.normalGreen,
         inactiveColorPrimary: Colors.black
       ),

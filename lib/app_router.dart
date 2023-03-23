@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/home_screen.dart';
+import 'package:flutter_app/screens/tipps_screen.dart';
+import 'package:flutter_app/services/navigation_service.dart';
 
 class AppRouter extends StatelessWidget {
 
@@ -10,13 +12,20 @@ class AppRouter extends StatelessWidget {
       return (context) => const HomeScreen();
     }
 
+    if (settings.name == '/tipps') {
+      return (context) => const TippsScreen();
+    }
+
     return (context) => const HomeScreen();
   }
 
   @override
   Widget build(BuildContext context) {
+    NavigationService navigationService = NavigationService.instance;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      navigatorKey: navigationService.navigatorKey,
       onGenerateRoute: (settings) {
         final routeBuilder = getRouteBuilder(settings);
         return MaterialPageRoute(
