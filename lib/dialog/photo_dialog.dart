@@ -18,12 +18,16 @@ class PhotoDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      insetPadding: const EdgeInsets.only(top: 7, left: 7, right: 7, bottom: 120),
+      clipBehavior: Clip.antiAlias,
       child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+        decoration: const BoxDecoration(
           color: Colors.blueGrey,
         ),
-        child: const Camera()
+        child: const Camera(),
       ),
     );
   }

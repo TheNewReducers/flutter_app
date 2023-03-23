@@ -12,11 +12,12 @@ class Camera extends StatefulWidget {
 class _CameraState extends State<Camera> {
   List<CameraDescription>? _cameras;
   CameraController? controller;
+  String? error;
 
   @override
   void initState() {
     super.initState();
-    
+    init();
   }
 
   void init() async {
@@ -34,7 +35,7 @@ class _CameraState extends State<Camera> {
     if (cameras == null || cameras.isEmpty) {
       return;
     }
-
+    print(cameras);
     controller = CameraController(cameras[0], ResolutionPreset.max);
     controller!.initialize().then((_) {
       if (!mounted) {
@@ -45,10 +46,14 @@ class _CameraState extends State<Camera> {
       if (e is CameraException) {
         switch (e.code) {
           case 'CameraAccessDenied':
-            // Handle access errors here.
+            setState(() {
+              error = 'The user did not grant access to the camera.';
+            });
             break;
           default:
-            // Handle other errors here.
+            setState(() {
+              error = 'Unknown camera error: ${e.code}';
+            });
             break;
         }
       }
@@ -66,7 +71,23 @@ class _CameraState extends State<Camera> {
   @override
   Widget build(BuildContext context) {
     if (controller == null || !controller!.value.isInitialized) {
-      return Container();
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Icon(Icons.camera_rounded, color: Colors.black38, size: 60),
+          SizedBox(height: 12),
+          SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 3, color: Colors.white38,)),
+        ],
+      );
+    }
+    if (error != null) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.error_outline, color: Colors.red, size: 60),
+          Text(error!),
+        ],
+      );
     }
     return CameraPreview(controller!);
   }
