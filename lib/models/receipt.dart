@@ -1,5 +1,8 @@
 import 'package:flutter_app/models/receipt_item.dart';
 import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
+
+var uuid = Uuid();
 
 class Receipt {
   final String id;
@@ -21,4 +24,12 @@ class Receipt {
     final DateFormat formatter = DateFormat('dd.MM.yyyy');
     return formatter.format(createdAt);
   }
+
+  Receipt.FromJson(Map<String, dynamic> json)
+      : id = uuid.v5(Uuid.NAMESPACE_URL, 'com.example.flutter_app'),
+        title = json['store']['name']['city'],
+        items = (json['items'] as List<dynamic>)
+            .map((item) => ReceiptItem.FromJson(item))
+            .toList(),
+        createdAt = DateTime.parse(json['date']);  
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/app_colors.dart';
 import 'package:flutter_app/components/CustomPieChart.dart';
 import 'package:flutter_app/components/custom_card.dart';
-import 'package:flutter_app/components/history_item.dart';
 import 'package:flutter_app/models/receipt.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -37,39 +36,39 @@ class _DetailsScreenState extends State<DetailsScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 42),
-            CustomPieChart(),
-            SizedBox(height: 42),
+            const SizedBox(height: 42),
+            const CustomPieChart(),
+            const SizedBox(height: 42),
             Padding(
-              padding: EdgeInsets.only(top: 0, left: 14, right: 14, bottom: 24),
+              padding: const EdgeInsets.only(top: 0, left: 14, right: 14, bottom: 24),
               child: CustomCard(
                 title: "Receipt Details",
                 subtitle: "Carbon details of the receipt items",
                 color: AppColor.cardGreen,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                   child: Column(
                     children: [
-                      ...widget.receipt.items.map((item) => Row(
+                      ...widget.receipt.items.map((item) => Padding(padding: const  EdgeInsets.only(bottom: 7), child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(item.title, style: TextStyle(fontSize: 16)),
-                          Text(item.carbon.toStringAsPrecision(1) + "kg CO2", style: TextStyle(fontSize: 16)),
+                          Text(item.title, style: const TextStyle(fontSize: 16)),
+                          Text(item.carbon.toStringAsPrecision(1) + "kg CO2", style: const TextStyle(fontSize: 16)),
                         ],
-                      )).toList(),
+                      ))).toList(),
                       Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 12),
+                        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 9),
                         decoration: const BoxDecoration(
                           color: Colors.black54
                         ),
                         height: 1,
                       ),
-                      SizedBox(height: 7),
+                      const SizedBox(height: 7),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Sum", style: TextStyle(fontSize: 16)),
-                          Text(widget.receipt.totalCarbon.toStringAsPrecision(1) + "kg CO2", style: TextStyle(fontSize: 16)),
+                          const Text("Sum", style: TextStyle(fontSize: 16)),
+                          Text(widget.receipt.totalCarbon.toStringAsPrecision(1) + "kg CO2", style: const TextStyle(fontSize: 16)),
                         ],
                       )
                     ],
