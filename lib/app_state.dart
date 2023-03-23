@@ -13,11 +13,13 @@ abstract class AppState {// Obtain shared preferences.
   static void addReceipt(Receipt receipt) {
     receipts.add(receipt);
     _receiptsController.add(receipts);
+    save();
   }
 
   static void removeReceipt(Receipt receipt) {
     receipts.remove(receipt);
     _receiptsController.add(receipts);
+    save();
   }
 
   static Future<void> save() async {

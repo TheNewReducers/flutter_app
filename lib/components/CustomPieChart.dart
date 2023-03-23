@@ -42,7 +42,7 @@ class _CustomPieChartState extends State<CustomPieChart> {
             colorList: colorList,
             initialAngleInDegree: 0,
             chartType: ChartType.ring,
-            ringStrokeWidth: 20,
+            ringStrokeWidth: 15,
             legendOptions: const LegendOptions(
               showLegendsInRow: false,
               legendPosition: LegendPosition.right,
@@ -58,6 +58,11 @@ class _CustomPieChartState extends State<CustomPieChart> {
               showChartValuesInPercentage: false,
               showChartValuesOutside: false,
               decimalPlaces: 1,
+              chartValueStyle: TextStyle(
+                fontSize: 10,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
             ),
     );
   }

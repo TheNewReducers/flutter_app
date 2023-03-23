@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app_colors.dart';
+import 'package:flutter_app/app_state.dart';
 import 'package:flutter_app/dialog/photo_dialog.dart';
 import 'package:flutter_app/screens/home_views/dashboard.dart';
 import 'package:flutter_app/screens/home_views/history.dart';
@@ -18,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    AppState.load();
     _controller.addListener(() {
       if (_controller.index == 1) {
         _showPhotoDialog();

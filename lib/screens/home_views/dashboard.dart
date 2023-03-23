@@ -42,55 +42,62 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const ViewTitleBar(title: "Dashboard", xPadding: 18),
-            const Padding(
-              padding: EdgeInsets.only(top: 14, left: 14, right: 14, bottom: 24),
-              child: CustomCard(
-                title: "Monthly Overview",
-                subtitle: "Your Carbon footprint",
-                color: AppColor.cardGreen,
-                child: Chart(),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 0, left: 14, right: 14, bottom: 24),
-              child: CustomCard(
-                title: "Monthly Overview",
-                subtitle: "Your Carbon footprint in kg",
-                color: AppColor.cardGreen,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 24, left: 0, right: 0, bottom: 24),
-                  child: CustomPieChart(data: dataMap()),
+      child: StreamBuilder(
+        stream: AppState.receiptsStream,
+        initialData: AppState.receipts,
+        builder: (context, snapshot) {
+          final data = dataMap();
+          return SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const ViewTitleBar(title: "Dashboard", xPadding: 18),
+                const Padding(
+                  padding: EdgeInsets.only(top: 14, left: 14, right: 14, bottom: 24),
+                  child: CustomCard(
+                    title: "Monthly Overview",
+                    subtitle: "Your Carbon footprint",
+                    color: AppColor.cardGreen,
+                    child: Chart(),
+                  ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 0, left: 14, right: 14, bottom: 24),
+                  child: CustomCard(
+                    title: "Monthly Overview",
+                    subtitle: "Your Carbon footprint in kg",
+                    color: AppColor.cardGreen,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 24, left: 0, right: 0, bottom: 24),
+                      child: data.isEmpty ? Container(height: 300, child: const Center(child: Text("No Data"))) : CustomPieChart(data: data),
+                    ),
+                  ),
+                ),
+                TitleBar(title: "Tipps to reduce carbon emissions", onMorePressed: _showAllTipps, xPadding: 18),
+                // const CardSlider(
+                //   initialPadding: 14,
+                //   children: [
+                //     CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
+                //     CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
+                //     CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
+                //   ]
+                // ),
+                // ListView.builder(
+                //       itemCount: imagePaths.length,
+                //       itemBuilder: (BuildContext context, int index) {
+                //         return CustomImageCard(
+                //           image: AssetImage(imagePaths[index]),
+                //           title: "Test",
+                //           color: AppColor.cardGreen,
+                //         );
+                //       },
+                // ),
+                const SizedBox(height: 40),
+              ],
             ),
-            TitleBar(title: "Tipps to reduce carbon emissions", onMorePressed: _showAllTipps, xPadding: 18),
-            // const CardSlider(
-            //   initialPadding: 14,
-            //   children: [
-            //     CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
-            //     CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
-            //     CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
-            //   ]
-            // ),
-            // ListView.builder(
-            //       itemCount: imagePaths.length,
-            //       itemBuilder: (BuildContext context, int index) {
-            //         return CustomImageCard(
-            //           image: AssetImage(imagePaths[index]),
-            //           title: "Test",
-            //           color: AppColor.cardGreen,
-            //         );
-            //       },
-            // ),
-            const SizedBox(height: 40),
-          ],
-        ),
-      )
+          );
+        }
+      ),
     );
   }
 

@@ -80,13 +80,13 @@ class _ChartState extends State<Chart> {
     String text;
     switch (value.toInt()) {
       case 1:
-        text = '10K';
+        text = '10 kg';
         break;
       case 3:
-        text = '30k';
+        text = '30 kg';
         break;
       case 5:
-        text = '50k';
+        text = '50 kg';
         break;
       default:
         return Container();

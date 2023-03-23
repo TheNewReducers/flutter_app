@@ -26,12 +26,22 @@ class Receipt {
   }
 
   Receipt.fromJson(Map<String, dynamic> json)
-      : id = uuid.v5(Uuid.NAMESPACE_URL, 'com.example.flutter_app'),
-        title = json['store']['name'],
+      : id = json['id'],
+        title = json['title'],
         items = (json['items'] as List<dynamic>)
             .map((item) => ReceiptItem.fromJson(item))
             .toList(),
-        createdAt = DateTime.now();  
+        createdAt = DateTime.parse(json['createdAt']);  
+
+  static Receipt parseFromApi(Map<String, dynamic> json) {
+    final id = uuid.v5(Uuid.NAMESPACE_URL, 'com.example.flutter_app');
+    final title = json['store']['name'];
+    final items = (json['items'] as List<dynamic>)
+        .map((item) => ReceiptItem.parseJson(item))
+        .toList();
+    final createdAt = DateTime.now();  
+    return Receipt(id, title, items, createdAt);
+  }
 
   Map<String, dynamic> toJson() => {
     'id': id,
