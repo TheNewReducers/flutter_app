@@ -113,7 +113,9 @@ class _ChartState extends State<Chart> {
   LineChartData mainData() {
     return LineChartData(
       gridData: FlGridData(
-        show: false,
+        show: true,
+        drawHorizontalLine: true,
+        drawVerticalLine: false,
       ),
       titlesData: FlTitlesData(
         show: true,
@@ -140,10 +142,10 @@ class _ChartState extends State<Chart> {
           ),
         ),
       ),
-      // borderData: FlBorderData(
-      //   show: true,
-      //   border: Border.all(color: const Color(0xff37434d)),
-      // ),
+      borderData: FlBorderData(
+        show: false,
+        // border: Border.all(color: const Color(0xff37434d)),
+      ),
       minX: 0,
       maxX: 11,
       minY: 0,
@@ -190,16 +192,12 @@ class _ChartState extends State<Chart> {
         verticalInterval: 1,
         horizontalInterval: 1,
         
-        // getDrawingVerticalLine: (value) {
-        //   return FlLine(
-        //     color: const Color(0xff37434d),
-        //     strokeWidth: 1,
-        //   );
-        // },
         getDrawingHorizontalLine: (value) {
           return FlLine(
             color: const Color(0xff37434d),
             strokeWidth: 1,
+            // horizontalInterval: 1,
+
           );
         },
       ),
