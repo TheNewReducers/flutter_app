@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/app_colors.dart';
+import 'package:flutter_app/app_state.dart';
 import 'package:flutter_app/components/chart.dart';
 import 'package:flutter_app/components/custom_card.dart';
 import 'package:flutter_app/components/history_item.dart';
@@ -31,16 +32,9 @@ class _HistoryState extends State<History> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: AppState.receipts.length,
                 itemBuilder: (context, index) {
-                  final item = Receipt(
-                    index.toString(), 
-                    "Rewe Innsbruck", [
-                      ReceiptItem(carbon: 2.4, category: "Brot", title: "Sonnen Toastbrot"),
-                      ReceiptItem(carbon: 2.4, category: "Brot", title: "Sonnen Toastbrot"),
-                      ReceiptItem(carbon: 2.4, category: "Brot", title: "Sonnen Toastbrot")
-                    ], DateTime.now()
-                  ); 
+                  final item = AppState.receipts[index];
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 7),
                     child: InkWell(

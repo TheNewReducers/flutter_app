@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
+import 'package:flutter_app/app_state.dart';
 import 'package:flutter_app/components/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/receipt.dart';
 import 'package:flutter_app/services/api.dart';
 
 class PhotoDialog extends StatefulWidget {
@@ -28,7 +31,11 @@ class _PhotoDialogState extends State<PhotoDialog> {
     });
 
     //await Future.delayed(const Duration(seconds: 2));
-    String result = await Api.uploadImage(file);
+    // String result = await Api.uploadImage(file);
+    String result = await Api.uploadImageDummy(file);
+    Receipt receipt = Receipt.fromJson(jsonDecode(result));
+
+    AppState.addReceipt(receipt);
 
     setState(() {
       isProcessing = false;
