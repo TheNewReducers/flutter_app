@@ -210,7 +210,7 @@ class _ChartState extends State<Chart> {
         ),
         leftTitles: AxisTitles(
           sideTitles: SideTitles(
-            showTitles: true,
+            showTitles: false,
             getTitlesWidget: leftTitleWidgets,
             reservedSize: 42,
             interval: 1,
@@ -222,10 +222,6 @@ class _ChartState extends State<Chart> {
         rightTitles: AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
-      ),
-      borderData: FlBorderData(
-        show: true,
-        border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
       maxX: 11,
