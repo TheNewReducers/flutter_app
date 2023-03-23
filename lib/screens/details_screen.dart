@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_app/app_colors.dart';
+import 'package:flutter_app/app_state.dart';
 import 'package:flutter_app/components/CustomPieChart.dart';
 import 'package:flutter_app/components/custom_card.dart';
 import 'package:flutter_app/models/receipt.dart';
+import 'package:flutter_app/services/navigation_service.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key, required this.receipt});
@@ -25,18 +27,55 @@ class _DetailsScreenState extends State<DetailsScreen> {
     return dataMap;
   }
 
+  void onDelete() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Delete receipt"),
+          content: const Text("Are you sure you want to delete this receipt?"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Cancel"),
+            ),
+            TextButton(
+              onPressed: () {
+                AppState.removeReceipt(widget.receipt);
+                Navigator.of(context).pop();
+                NavigationService.instance.pushNamed("/", arguments: 2);
+              },
+              child: const Text("Delete", style: TextStyle(color: Colors.red)),
+            ),
+          ],
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
       appBar: AppBar(
-        title: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(widget.receipt.title, style: const TextStyle(fontSize: 18)),
-            const SizedBox(height: 2),
-            Text(widget.receipt.formattedCreatedAt, style: const TextStyle(fontSize: 15, color: AppColor.grey)),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(widget.receipt.title, style: const TextStyle(fontSize: 18)),
+                const SizedBox(height: 2),
+                Text(widget.receipt.formattedCreatedAt, style: const TextStyle(fontSize: 15, color: AppColor.grey)),
+              ],
+            ),
+            IconButton(
+              onPressed: onDelete,
+              icon: Icon(Icons.delete_forever_rounded),
+            ),
           ],
         ),
         elevation: 0,

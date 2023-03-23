@@ -11,7 +11,8 @@ class AppRouter extends StatelessWidget {
 
   Widget Function(BuildContext) getRouteBuilder(RouteSettings settings) {
     if (settings.name == '/') {
-      return (context) => const HomeScreen();
+      int slide = settings.arguments != null ? settings.arguments as int : 0;
+      return (context) => HomeScreen(initialSlide: slide);
     }
 
     if (settings.name == '/tipps') {
@@ -23,7 +24,7 @@ class AppRouter extends StatelessWidget {
       return (context) => DetailsScreen(receipt: receipt);
     }
 
-    return (context) => const HomeScreen();
+    return (context) => const HomeScreen(initialSlide: 0);
   }
 
   @override

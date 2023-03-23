@@ -11,6 +11,8 @@ import 'package:flutter_app/components/title_bar.dart';
 import 'package:flutter_app/services/navigation_service.dart';
 import 'package:flutter_app/components/CustomPieChart.dart';
 
+import '../../components/card_slider.dart';
+
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -74,14 +76,14 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
                 TitleBar(title: "Tipps to reduce carbon emissions", onMorePressed: _showAllTipps, xPadding: 18),
-                // const CardSlider(
-                //   initialPadding: 14,
-                //   children: [
-                //     CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
-                //     CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
-                //     CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
-                //   ]
-                // ),
+                const CardSlider(
+                  initialPadding: 14,
+                  children: [
+                    CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
+                    CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
+                    CustomImageCard(image: AssetImage("assets/images/chicken.png"), title: "Test", color: AppColor.cardGreen),
+                  ]
+                ),
                 // ListView.builder(
                 //       itemCount: imagePaths.length,
                 //       itemBuilder: (BuildContext context, int index) {

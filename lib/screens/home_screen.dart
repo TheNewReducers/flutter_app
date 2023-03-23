@@ -7,7 +7,9 @@ import 'package:flutter_app/screens/home_views/history.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.initialSlide});
+
+  final int initialSlide;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     AppState.load();
+    _controller.jumpToTab(widget.initialSlide);
     _controller.addListener(() {
       if (_controller.index == 1) {
         _showPhotoDialog();
