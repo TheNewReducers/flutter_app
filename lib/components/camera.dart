@@ -13,6 +13,7 @@ class _CameraState extends State<Camera> {
   List<CameraDescription>? _cameras;
   CameraController? controller;
   String? error;
+  bool isTakingPicture = false;
 
   @override
   void initState() {
@@ -27,7 +28,6 @@ class _CameraState extends State<Camera> {
 
   Future<void> loadCameras() async {
     _cameras = await availableCameras();
-    openCamera();
   }
 
   void openCamera() {
@@ -35,7 +35,7 @@ class _CameraState extends State<Camera> {
     if (cameras == null || cameras.isEmpty) {
       return;
     }
-    print(cameras);
+
     controller = CameraController(cameras[0], ResolutionPreset.max);
     controller!.initialize().then((_) {
       if (!mounted) {
@@ -68,6 +68,22 @@ class _CameraState extends State<Camera> {
     super.dispose();
   }
 
+  void takePicture() async {
+    setState(() {
+      isTakingPicture = true;
+    });
+
+    try {
+      await controller!.takePicture();
+    } catch (e) {
+      print(e);
+    }
+
+    setState(() {
+      isTakingPicture = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (controller == null || !controller!.value.isInitialized) {
@@ -89,6 +105,25 @@ class _CameraState extends State<Camera> {
         ],
       );
     }
-    return CameraPreview(controller!);
+    return Stack(
+      children: [
+        CameraPreview(controller!),
+        Positioned(
+          bottom: 12,
+          left: 0,
+          right: 0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                icon: Icon(Icons.camera, color: isTakingPicture ? Colors.white30 : Colors.white),
+                iconSize: 62,
+                onPressed: isTakingPicture ? null : takePicture,
+              ),
+            ],
+          )
+        ),
+      ],
+    );
   }
 }
