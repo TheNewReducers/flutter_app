@@ -1,0 +1,54 @@
+{
+    "table": [
+      {
+        "Tip": "Choose plant-based proteins",
+        "Why it's important": "Plant-based foods generally have a lower carbon footprint than meat and dairy. Animal agriculture generates a significant amount of greenhouse gas emissions, particularly methane from livestock. By choosing plant-based proteins, you can help reduce these emissions.",
+        "Potential CO2 savings per meal": "3.3"
+      },
+      {
+        "Tip": "Buy seasonal and local produce",
+        "Why it's important": "Food that is grown locally and in-season reduces the carbon footprint associated with transportation and storage. Transporting food over long distances generates a significant amount of greenhouse gas emissions. By buying local and seasonal produce, you can help reduce these emissions.",
+        "Potential CO2 savings per meal": "0.4"
+      },
+      {
+        "Tip": "Choose fresh over processed",
+        "Why it's important": "Processed foods require more energy to produce than fresh foods. This increased energy use translates to more greenhouse gas emissions. By choosing fresh produce over processed items, you can help reduce your carbon footprint.",
+        "Potential CO2 savings per meal": "0.2"
+      },
+      {
+        "Tip": "Choose whole-grain options",
+        "Why it's important": "Processing grains into refined flour requires more energy than leaving them whole. This additional energy use results in more greenhouse gas emissions. By choosing whole-grain options, you can help reduce these emissions.",
+        "Potential CO2 savings per meal": "0.1"
+      },
+      {
+        "Tip": "Buy organic produce",
+        "Why it's important": "Organic farming practices use fewer synthetic pesticides and fertilizers than conventional farming practices. The production and use of synthetic fertilizers and pesticides generate significant greenhouse gas emissions. By choosing organic produce, you can help reduce these emissions.",
+        "Potential CO2 savings per meal": "0.5"
+      },
+      {
+        "Tip": "Choose minimally packaged items",
+        "Why it's important": "Packaging requires energy to produce, and most packaging materials generate greenhouse gas emissions during their production. By choosing minimally packaged items, you can help reduce these emissions.",
+        "Potential CO2 savings per meal": "0.1"
+      },
+      {
+        "Tip": "Choose bulk items",
+        "Why it's important": "Buying in bulk reduces the amount of packaging waste generated. This reduction in waste can help reduce greenhouse gas emissions from landfills.",
+        "Potential CO2 savings per meal": "0.1"
+      },
+      {
+        "Tip": "Buy in-season herbs",
+        "Why it's important": "Buying in-season herbs reduces the carbon footprint associated with transportation. Transporting herbs over long distances generates a significant amount of greenhouse gas emissions. By buying in-season herbs, you can help reduce these emissions.",
+        "Potential CO2 savings per meal": "0.01"
+      },
+      {
+        "Tip": "Choose sustainable seafood",
+        "Why it's important": "Overfishing and unsustainable fishing practices generate significant greenhouse gas emissions. By choosing sustainable seafood options, you can help reduce these emissions.",
+        "Potential CO2 savings per meal": "0.3"
+      },
+      {
+        "Tip": "Opt for tap water or reusable bottle",
+        "Why it's important": "Bottled water generates significant greenhouse gas emissions due to the production and transportation of plastic bottles. By choosing tap water or using a reusable water bottle, you can help reduce these emissions.",
+        "Potential CO2 savings per meal": "0.02"
+      }
+    ]
+    }

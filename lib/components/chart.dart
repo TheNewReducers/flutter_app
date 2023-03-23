@@ -36,24 +36,6 @@ class _ChartState extends State<Chart> {
             ),
           ),
         ),
-        SizedBox(
-          width: 60,
-          height: 34,
-          child: TextButton(
-            onPressed: () {
-              setState(() {
-                showAvg = !showAvg;
-              });
-            },
-            child: Text(
-              'avg',
-              style: TextStyle(
-                fontSize: 12,
-                color: showAvg ? Colors.white.withOpacity(0.5) : Colors.white,
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }
@@ -116,7 +98,15 @@ class _ChartState extends State<Chart> {
         show: true,
         drawHorizontalLine: true,
         drawVerticalLine: false,
+        horizontalInterval: 1,
+        getDrawingHorizontalLine: (value) {
+          return FlLine(
+            color: AppColor.grey,
+            strokeWidth: 0.2, // make the lines thinner
+          );
+        },
       ),
+      
       titlesData: FlTitlesData(
         show: true,
         rightTitles: AxisTitles(
