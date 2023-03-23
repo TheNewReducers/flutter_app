@@ -26,10 +26,12 @@ class TippCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Hero(tag: Key("tipp:${tipp.imagePath}"), child: CustomImageCard(
+      width: 240,
       image: AssetImage(tipp.imagePath),
       onTap: () => openOverlay(context),
       color: AppColor.cardGreen,
       child: Container(
+        width: 240,
         height: 90,
         padding: const EdgeInsets.symmetric(horizontal: 14),
         child: Row(

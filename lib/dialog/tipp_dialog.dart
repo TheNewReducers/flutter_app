@@ -14,40 +14,64 @@ class TippDialog extends StatefulWidget {
 }
 
 class _TippDialogState extends State<TippDialog> {
-  bool isExpanded = false;
+
+  bool visible = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
+  void showContent() async {
+    await Future.delayed(const Duration(milliseconds: 300));
+    setState(() {
+      visible = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    double bottom = (MediaQuery.of(context).size.height - 742.0) / 2.0;
+
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
       backgroundColor: Colors.transparent,
       shadowColor: Colors.transparent,
-      insetPadding: const EdgeInsets.only(top: 7, left: 7, right: 7, bottom: 120),
+      insetPadding: EdgeInsets.only(top: 24, left: 14, right: 14, bottom: bottom),
       clipBehavior: Clip.antiAlias,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Hero(tag: Key("tipp:${widget.tipp.imagePath}"), child: CustomImageCard(
+      child: Hero(
+        tag: Key("tipp:${widget.tipp.imagePath}"),
+        child: AnimatedSize(
+          duration: const Duration(milliseconds: 200),
+          child: CustomImageCard(
             image: AssetImage(widget.tipp.imagePath),
             color:AppColor.cardGreen,
-            child: AnimatedSize(
-                duration: const Duration(milliseconds: 200),
-                child: Container(
-                  height: isExpanded ? 300 : 90,
-                  padding: const EdgeInsets.symmetric(horizontal: 14),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+            width: MediaQuery.of(context).size.width - 14,
+            child: Container(
+              height: 420,
+              padding: const EdgeInsets.symmetric(horizontal: 14),
+              child: Column(
+                children: [
+                  const SizedBox(height: 24),
+                  Row(
                     children: [
-                      Flexible(child: Text(widget.tipp.title, style: const TextStyle(fontSize: 18)))
+                      Flexible(child: Text(widget.tipp.title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),)
                     ],
                   ),
-                )
-              ),
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Flexible(child: Text(widget.tipp.description, style: const TextStyle(fontSize: 18, height: 1.3)),)
+                    ],
+                  ),
+                ],
+              )
             )
           )
-        ],
+        )
       )
     );
   }
