@@ -75,11 +75,18 @@ class _TippDialogState extends State<TippDialog> {
                   ),
                   const SizedBox(height: 12),
                   // add a button with a link: widget.tipp.link
-                  Row(
-                    children: [
-                      Flexible(child: Text(widget.tipp.link, style: const TextStyle(fontSize: 18, height: 1.3)),)
-                    ],
-                  )
+                  // Row(
+                  //   children: [
+                  //     // Flexible(child: Text(widget.tipp.link, style: const TextStyle(fontSize: 18, height: 1.3)),)
+                  //     // ElevatedButton(
+                  //     //   onPressed: () {
+                  //     //     // Open the link when the button is pressed
+                  //     //     launch('https://www.example.com');
+                  //     //   },
+                  //     //   child: Text('Go to Example'),
+                  //     // ),
+                  //   ],
+                  // )
                 ],
               )
             )
