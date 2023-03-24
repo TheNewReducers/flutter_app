@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../app_colors.dart';
-
 class TitleBar extends StatelessWidget {
   const TitleBar({super.key, required this.title, required this.onMorePressed, required this.xPadding});
 
@@ -22,8 +20,8 @@ class TitleBar extends StatelessWidget {
             foregroundColor: MaterialStateProperty.all<Color>(Colors.grey),
           ),
           child: Row(
-            children: [
-              const Text("SEE ALL"),
+            children: const [
+              Text("SEE ALL"),
               Icon(Icons.chevron_right)
             ],
           )

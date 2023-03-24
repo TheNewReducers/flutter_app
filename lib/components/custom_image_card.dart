@@ -11,21 +11,30 @@ class CustomImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: SingleChildScrollView(child: Column(
-        children: [
-          Image(image: image, width: width),
-          Container(
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(32), bottomRight: Radius.circular(32))
-            ),
-            width: width,
-            child: child,
-          )
-        ],
-      ))
+    Widget content = Material(color: Colors.transparent, child: SingleChildScrollView(child: Column(
+      children: [
+        Image(image: image, width: width),
+        Container(
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(32), bottomRight: Radius.circular(32))
+          ),
+          width: width,
+          child: child,
+        )
+      ],
+    )));
+
+    if (onTap == null) {
+      return content;
+    }
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        child: content
+      )
     );
   }
 }

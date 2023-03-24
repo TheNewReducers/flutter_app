@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_app/app_colors.dart';
 import 'package:flutter_app/app_state.dart';
-import 'package:flutter_app/components/CustomPieChart.dart';
+import 'package:flutter_app/components/custom_pie_chart.dart';
 import 'package:flutter_app/components/custom_card.dart';
 import 'package:flutter_app/models/receipt.dart';
 import 'package:flutter_app/services/navigation_service.dart';
@@ -102,7 +102,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(item.title, style: const TextStyle(fontSize: 16)),
-                          Text(item.carbon.toStringAsFixed(1) + "kg CO2", style: const TextStyle(fontSize: 16)),
+                          Text("${item.carbon.toStringAsFixed(1)}kg CO2", style: const TextStyle(fontSize: 16)),
                         ],
                       ))).toList(),
                       Container(
@@ -117,7 +117,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Text("Sum", style: TextStyle(fontSize: 16)),
-                          Text(widget.receipt.totalCarbon.toStringAsFixed(1) + "kg CO2", style: const TextStyle(fontSize: 16)),
+                          Text("${widget.receipt.totalCarbon.toStringAsFixed(1)}kg CO2", style: const TextStyle(fontSize: 16)),
                         ],
                       )
                     ],

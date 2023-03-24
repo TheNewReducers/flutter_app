@@ -84,9 +84,7 @@ class _CameraState extends State<Camera> {
     try {
      final file = await controller!.takePicture();
      widget.onPhotoTaken(File(file.path));
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
 
     setState(() {
       isTakingPicture = false;

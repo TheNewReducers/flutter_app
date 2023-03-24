@@ -1,17 +1,14 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_app/app_colors.dart';
 import 'package:flutter_app/app_state.dart';
 import 'package:flutter_app/components/chart.dart';
 import 'package:flutter_app/components/custom_card.dart';
-import 'package:flutter_app/components/custom_image_card.dart';
 import 'package:flutter_app/components/tipp_card.dart';
 import 'package:flutter_app/components/view_title_bar.dart';
 import 'package:flutter_app/components/title_bar.dart';
 import 'package:flutter_app/services/navigation_service.dart';
-import 'package:flutter_app/components/CustomPieChart.dart';
+import 'package:flutter_app/components/custom_pie_chart.dart';
 
 import '../../components/card_slider.dart';
 import '../../constants/tipps.dart';
@@ -78,7 +75,7 @@ class _DashboardState extends State<Dashboard> {
                     color: AppColor.cardGreen,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 24, left: 0, right: 0, bottom: 24),
-                      child: data.isEmpty ? Container(height: 300, child: const Center(child: Text("No Data"))) : CustomPieChart(data: data),
+                      child: data.isEmpty ? const SizedBox(height: 300, child: Center(child: Text("No Data"))) : CustomPieChart(data: data),
                     ),
                   ),
                 ).animate()
