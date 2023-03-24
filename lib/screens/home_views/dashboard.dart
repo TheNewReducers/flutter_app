@@ -74,6 +74,7 @@ class _DashboardState extends State<Dashboard> {
         initialData: AppState.receipts,
         builder: (context, snapshot) {
           final data = monthlyDataMap();
+          final mapAmountData = dataMapAmount();
           return SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -86,8 +87,8 @@ class _DashboardState extends State<Dashboard> {
                     title: "Recent progress",
                     subtitle: "Your carbon footprint",
                     color: AppColor.cardGreen,
-                    child: Chart(
-                      data: dataMapAmount(),
+                    child: data.isEmpty ? const SizedBox(height: 300, child: Center(child: Text("No Data"))) : Chart(
+                      data: mapAmountData,
                     ),
                   ),
                 ).animate()

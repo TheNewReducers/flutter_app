@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/app_colors.dart';
 import 'package:flutter_app/components/custom_image_card.dart';
 import 'package:flutter_app/models/reduce_carbon_tipp.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TippDialog extends StatefulWidget {
 
@@ -53,7 +54,8 @@ class _TippDialogState extends State<TippDialog> {
             child: Container(
               height: 420,
               padding: const EdgeInsets.symmetric(horizontal: 14),
-              child: Column(
+              child: SingleChildScrollView(
+                child: Column(
                 children: [
                   const SizedBox(height: 24),
                   Row(
@@ -74,21 +76,25 @@ class _TippDialogState extends State<TippDialog> {
                     ],
                   ),
                   const SizedBox(height: 12),
-                  // add a button with a link: widget.tipp.link
-                  // Row(
-                  //   children: [
-                  //     // Flexible(child: Text(widget.tipp.link, style: const TextStyle(fontSize: 18, height: 1.3)),)
-                  //     // ElevatedButton(
-                  //     //   onPressed: () {
-                  //     //     // Open the link when the button is pressed
-                  //     //     launch('https://www.example.com');
-                  //     //   },
-                  //     //   child: Text('Go to Example'),
-                  //     // ),
-                  //   ],
-                  // )
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          launchUrl(Uri.parse(widget.tipp.link));
+                        },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColor.darkGreen,
+                          ),
+                        child: const Text("Read more", style: TextStyle(
+                          fontSize: 16, 
+                          color: Colors.white)),
+                      ),                      
+                    ],
+                  ),
+                  const SizedBox(height: 15),
                 ],
               )
+              ),
             )
           )
         )

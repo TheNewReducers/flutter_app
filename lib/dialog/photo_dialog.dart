@@ -31,18 +31,23 @@ class _PhotoDialogState extends State<PhotoDialog> {
       isProcessing = true;
     });
 
-    //await Future.delayed(const Duration(seconds: 2));
-    String result = await Api.uploadImage(file);
-    // String result = await Api.uploadImageDummy(file);
-    Receipt receipt = Receipt.parseFromApi(jsonDecode(result));
-    AppState.addReceipt(receipt);
+    try {
+      //await Future.delayed(const Duration(seconds: 2));
+      String result = await Api.uploadImage(file);
+      // String result = await Api.uploadImageDummy(file);
+      Receipt receipt = Receipt.parseFromApi(jsonDecode(result));
+      AppState.addReceipt(receipt);
+      setState(() {
+        isProcessing = false;
+      });
 
-    setState(() {
-      isProcessing = false;
-    });
-
-    Navigator.of(context).pop();
-    NavigationService.instance.pushNamed("/details", arguments: receipt);
+      Navigator.of(context).pop();
+      NavigationService.instance.pushNamed("/details", arguments: receipt);
+    } catch (e) {
+      print(e);
+      Navigator.of(context).pop();
+      NavigationService.instance.pushNamed("/");
+    }
   }
 
   void onReadyChange(bool ready) {

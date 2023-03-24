@@ -15,8 +15,8 @@ class Chart extends StatefulWidget {
 
 class _ChartState extends State<Chart> {
   List<Color> gradientColors = [
-    Colors.green,
-    Colors.cyan,
+    AppColor.normalGreen,
+    AppColor.blue,
   ];
 
   bool showAvg = false;

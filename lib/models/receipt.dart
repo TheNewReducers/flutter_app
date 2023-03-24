@@ -44,11 +44,17 @@ class Receipt {
 
   static Receipt parseFromApi(Map<String, dynamic> json) {
     final id = uuid.v5(Uuid.NAMESPACE_URL, 'com.example.flutter_app');
-    final title = json['store']['name'];
+    final title = json['store'];
     final items = (json['items'] as List<dynamic>)
         .map((item) => ReceiptItem.parseJson(item))
         .toList();
-    final createdAt = DateTime.now();  
+    DateTime createdAt = DateTime.now();
+    if (json['createdAt'] != null) {
+      try {
+        createdAt = DateTime.parse(json["timestamp"]);  
+      } catch (e) {}
+    }
+
     return Receipt(id, title, items, createdAt);
   }
 
