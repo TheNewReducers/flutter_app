@@ -87,7 +87,7 @@ class _DashboardState extends State<Dashboard> {
                     title: "Recent progress",
                     subtitle: "Your carbon footprint",
                     color: AppColor.cardGreen,
-                    child: data.isEmpty ? const SizedBox(height: 300, child: Center(child: Text("No Data"))) : Chart(
+                    child: mapAmountData.length < 2 ? const SizedBox(height: 300, child: Center(child: Text("Not enough Data"))) : Chart(
                       data: mapAmountData,
                     ),
                   ),

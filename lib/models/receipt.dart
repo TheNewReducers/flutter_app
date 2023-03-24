@@ -44,7 +44,7 @@ class Receipt {
 
   static Receipt parseFromApi(Map<String, dynamic> json) {
     final id = uuid.v5(Uuid.NAMESPACE_URL, 'com.example.flutter_app');
-    final title = json['store'];
+    final title = json['store'] != null && json['store']['name'] != null ? json['store']['name'] : 'Unknown';
     final items = (json['items'] as List<dynamic>)
         .map((item) => ReceiptItem.parseJson(item))
         .toList();

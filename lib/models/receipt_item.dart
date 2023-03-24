@@ -19,13 +19,13 @@ class ReceiptItem {
         carbon = json['carbon'];
 
   static ReceiptItem parseJson(Map<String, dynamic> json) {
-    final title = json['name'] ?? '';
-    final category = json['category'] ?? '';
+    final title = (json['name'] ?? "Unkown").toString();
+    final category = (json['category'] ?? "Unknown").toString();
     final price = json['price'] ?? 0;
     final amount = json['amount'] ?? 1;
-    final weight = json['weight'] ?? '';
-    final dataName = json['data_name'] ?? '';
-    final carbon = json['co2_item'] ?? 0;
+    final weight = (json['weight'] ?? "").toString();
+    final dataName = (json['data_name'] ?? "").toString();
+    final carbon = json['co2_item'] ?? 0.0;
 
     return ReceiptItem(title: title, category: category, carbon: carbon, price: price, amount: amount, weight: weight, dataName: dataName);
   }

@@ -117,7 +117,7 @@ class _ChartState extends State<Chart> {
         show: true,
         drawHorizontalLine: true,
         drawVerticalLine: false,
-        horizontalInterval: getPadding(),
+        horizontalInterval: getPadding() != 0 ? getPadding() : 1,
         getDrawingHorizontalLine: (value) {
           return FlLine(
             color: AppColor.grey,
