@@ -5,6 +5,7 @@ import 'package:flutter_app/app_state.dart';
 import 'package:flutter_app/components/custom_pie_chart.dart';
 import 'package:flutter_app/components/custom_card.dart';
 import 'package:flutter_app/models/receipt.dart';
+import 'package:flutter_app/models/receipt_item.dart';
 import 'package:flutter_app/services/navigation_service.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -55,6 +56,48 @@ class _DetailsScreenState extends State<DetailsScreen> {
     );
   }
 
+  void showInfo(String info) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Info"),
+          content: Text(info),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Close"),
+            ),
+          ],
+        );
+      }
+    );
+  }
+
+  Widget detailRow(ReceiptItem item) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          children: [
+            Text(item.title, style: const TextStyle(fontSize: 16)),
+            item.info != "" ? TextButton(
+              child: const Icon( Icons.info_outline_rounded,color: Colors.black, size: 18,),
+              onPressed: () => showInfo(item.info),
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.all(0),
+                minimumSize: const Size(0, 0),
+              )
+            ) : const SizedBox(),
+          ],
+        ),
+        item.carbon == 0 ? const Text("N/A", style: const TextStyle(fontSize: 16)) : Text("${item.carbon.toStringAsFixed(1)}kg CO2", style: const TextStyle(fontSize: 16)),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,13 +141,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                   child: Column(
                     children: [
-                      ...widget.receipt.items.map((item) => Padding(padding: const  EdgeInsets.only(bottom: 7), child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(item.title, style: const TextStyle(fontSize: 16)),
-                          Text("${item.carbon.toStringAsFixed(1)}kg CO2", style: const TextStyle(fontSize: 16)),
-                        ],
-                      ))).toList(),
+                      ...widget.receipt.items.map((item) => Padding(padding: const  EdgeInsets.only(bottom: 7), child: detailRow(item))).toList(),
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 9),
                         decoration: const BoxDecoration(
