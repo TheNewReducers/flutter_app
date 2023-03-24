@@ -1,10 +1,13 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/models/receipt.dart';
 
 import '../app_colors.dart';
 
 class Chart extends StatefulWidget {
-  const Chart({super.key});
+  const Chart({super.key, required this.data});
+
+  final List<Receipt> data;
 
   @override
   State<Chart> createState() => _ChartState();
@@ -32,7 +35,7 @@ class _ChartState extends State<Chart> {
               bottom: 12,
             ),
             child: LineChart(
-              showAvg ? avgData() : mainData(),
+              mainData(),
             ),
           ),
         ),
@@ -46,28 +49,12 @@ class _ChartState extends State<Chart> {
       fontSize: 12,
       color: AppColor.grey
     );
-    Widget text;
-    switch (value.toInt()) {
-      case 1:
-        text = const Text('MAR', style: style);
-        break;
-      case 4:
-        text = const Text('ARP', style: style);
-        break;
-      case 7:
-        text = const Text('MAY', style: style);
-        break;
-      case 10:
-        text = const Text('JUN', style: style);
-        break;
-      default:
-        text = const Text('', style: style);
-        break;
-    }
+    
+    String text = widget.data[value.toInt()].shortFormattedCreatedAt;
 
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      child: text,
+      child: Text(text, style: style),
     );
   }
 
@@ -77,22 +64,51 @@ class _ChartState extends State<Chart> {
       fontSize: 12,
       color: AppColor.grey
     );
-    String text;
-    switch (value.toInt()) {
-      case 1:
-        text = '10 kg';
-        break;
-      case 3:
-        text = '30 kg';
-        break;
-      case 5:
-        text = '50 kg';
-        break;
-      default:
-        return Container();
+
+    if (
+      value != minYValue().floor().toDouble() 
+      && value != maxYValue().ceil().toDouble()
+      && value != (maxYValue() - getPadding()).ceil().toDouble()
+    ) {
+      return Container();
+    }
+    
+    return Text("${value.toStringAsFixed(0)} kg", style: style, textAlign: TextAlign.left);
+  }
+
+  List<FlSpot> getSpots() {
+    List<FlSpot> spots = [];
+    for (var i = 0; i < widget.data.length; i++) {
+      spots.add(FlSpot(i.toDouble(), widget.data.elementAt(i).totalCarbon));
+    }
+    return spots;
+  }
+
+  double maxYValue() {
+    double max = 0;
+    for (var e in widget.data) {
+      if (e.totalCarbon > max) {
+        max = e.totalCarbon;
+      }
+    }
+    return max;
+  }
+
+  double minYValue() {
+    if (widget.data.isEmpty) return 0;
+
+    double min = widget.data.first.totalCarbon;
+    for (var e in widget.data) {
+      if (e.totalCarbon < min) {
+        min = e.totalCarbon;
+      }
     }
 
-    return Text(text, style: style, textAlign: TextAlign.left);
+    return min;
+  }
+
+  double getPadding() {
+    return (maxYValue() - minYValue()) / 2;
   }
 
   LineChartData mainData() {
@@ -140,20 +156,12 @@ class _ChartState extends State<Chart> {
         // border: Border.all(color: const Color(0xff37434d)),
       ),
       minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
+      maxX: widget.data.length.toDouble() - 1,
+      minY: (minYValue() - getPadding()).floor().toDouble(),
+      maxY: (maxYValue() + getPadding()).ceil().toDouble(),
       lineBarsData: [
         LineChartBarData(
-          spots: const [
-            FlSpot(0, 3),
-            FlSpot(2.6, 2),
-            FlSpot(4.9, 5),
-            FlSpot(6.8, 3.1),
-            FlSpot(8, 4),
-            FlSpot(9.5, 3),
-            FlSpot(11, 4),
-          ],
+          spots: getSpots(),
           isCurved: true,
           gradient: LinearGradient(
             colors: gradientColors,
@@ -169,96 +177,6 @@ class _ChartState extends State<Chart> {
               colors: gradientColors
                   .map((color) => color.withOpacity(0.3))
                   .toList(),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  LineChartData avgData() {
-    return LineChartData(
-      lineTouchData: LineTouchData(enabled: false),
-      gridData: FlGridData(
-        show: true,
-        drawHorizontalLine: true,
-        verticalInterval: 1,
-        horizontalInterval: 1,
-        
-        getDrawingHorizontalLine: (value) {
-          return FlLine(
-            color: const Color(0xff37434d),
-            strokeWidth: 1,
-            // horizontalInterval: 1,
-
-          );
-        },
-      ),
-      titlesData: FlTitlesData(
-        show: true,
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            reservedSize: 30,
-            getTitlesWidget: bottomTitleWidgets,
-            interval: 1,
-          ),
-        ),
-        leftTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: false,
-            getTitlesWidget: leftTitleWidgets,
-            reservedSize: 42,
-            interval: 1,
-          ),
-        ),
-        topTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        rightTitles: AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-      ),
-      minX: 0,
-      maxX: 11,
-      minY: 0,
-      maxY: 6,
-      lineBarsData: [
-        LineChartBarData(
-          spots: const [
-            FlSpot(0, 3.44),
-            FlSpot(2.6, 3.44),
-            FlSpot(4.9, 3.44),
-            FlSpot(6.8, 3.44),
-            FlSpot(8, 3.44),
-            FlSpot(9.5, 3.44),
-            FlSpot(11, 3.44),
-          ],
-          isCurved: true,
-          gradient: LinearGradient(
-            colors: [
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                  .lerp(0.2)!,
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                  .lerp(0.2)!,
-            ],
-          ),
-          barWidth: 5,
-          isStrokeCapRound: true,
-          dotData: FlDotData(
-            show: false,
-          ),
-          belowBarData: BarAreaData(
-            show: true,
-            gradient: LinearGradient(
-              colors: [
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
-                    .lerp(0.2)!
-                    .withOpacity(0.1),
-              ],
             ),
           ),
         ),

@@ -25,6 +25,11 @@ class Receipt {
     return formatter.format(createdAt);
   }
 
+  String get shortFormattedCreatedAt {
+    final DateFormat formatter = DateFormat('dd.MM');
+    return formatter.format(createdAt);
+  }
+
   Receipt.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         title = json['title'],

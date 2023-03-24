@@ -7,6 +7,7 @@ import 'package:flutter_app/components/custom_card.dart';
 import 'package:flutter_app/components/tipp_card.dart';
 import 'package:flutter_app/components/view_title_bar.dart';
 import 'package:flutter_app/components/title_bar.dart';
+import 'package:flutter_app/models/receipt.dart';
 import 'package:flutter_app/services/navigation_service.dart';
 import 'package:flutter_app/components/custom_pie_chart.dart';
 
@@ -28,6 +29,15 @@ class _DashboardState extends State<Dashboard> {
 
   void _showAllTipps() {
     NavigationService.instance.pushNamed("/tipps");
+  }
+
+  List<Receipt> dataMapAmount() {
+    List<Receipt> receiptList = [];
+    for (var receipt in AppState.receipts) {
+      receiptList.add(receipt);
+      if (receiptList.length >= 5) break;
+    }
+    return receiptList;
   }
 
   Map<String, double> dataMap() {
@@ -58,10 +68,12 @@ class _DashboardState extends State<Dashboard> {
                   padding: const EdgeInsets.only(top: 14, left: 14, right: 14, bottom: 24),
                   child: CustomCard(
                     shareable: true,
-                    title: "Monthly Overview",
+                    title: "Recent progress",
                     subtitle: "Your carbon footprint",
                     color: AppColor.cardGreen,
-                    child: const Chart(),
+                    child: Chart(
+                      data: dataMapAmount(),
+                    ),
                   ),
                 ).animate()
                   .slideY(duration: const Duration(milliseconds: 700), begin: 0.12, end: 0, curve: Curves.easeInOut)

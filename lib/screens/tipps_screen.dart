@@ -33,6 +33,7 @@ class _TippsScreenState extends State<TippsScreen> {
               )
             ],
           )),
+          const SizedBox(height: 24),
         ],
       ))
     );

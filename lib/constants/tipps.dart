@@ -3,6 +3,12 @@ import 'package:flutter_app/models/reduce_carbon_tipp.dart';
 
 const List<ReduceCarbonTipp> constantsTipps = [
   ReduceCarbonTipp(
+    "Opt for tap water or reusable bottle",
+    "Bottled water generates significant greenhouse gas emissions due to the production and transportation of plastic bottles. By choosing tap water or using a reusable water bottle, you can help reduce these emissions.",
+    0.02,
+    "assets/images/water.png",
+  ),
+  ReduceCarbonTipp(
     "Choose plant-based proteins",
     "Plant-based foods generally have a lower carbon footprint than meat and dairy. Animal agriculture generates a significant amount of greenhouse gas emissions, particularly methane from livestock. By choosing plant-based proteins, you can help reduce these emissions.",
     3.3,
@@ -32,10 +38,23 @@ const List<ReduceCarbonTipp> constantsTipps = [
     0.1,
     "assets/images/trash.png",
   ),
-  ReduceCarbonTipp(
-    "Opt for tap water or reusable bottle",
-    "Bottled water generates significant greenhouse gas emissions due to the production and transportation of plastic bottles. By choosing tap water or using a reusable water bottle, you can help reduce these emissions.",
-    0.02,
-    "assets/images/water.png",
+   ReduceCarbonTipp(
+    "Embrace plant-based alternatives to sausages",
+    "Opting for plant-based sausage alternatives can lower your environmental impact and support a healthier lifestyle. By choosing these options, you're not only reducing greenhouse gas emissions, but also benefiting from a diverse and nutrient-rich diet.",
+    1.5,
+    "assets/images/sausage.png",
   ),
+  ReduceCarbonTipp(
+    "Explore plant-based options to replace chicken",
+    "Discover the exciting world of plant-based chicken alternatives that provide the same satisfaction while being more environmentally friendly. By choosing these alternatives, you're supporting a more sustainable food system and enjoying a variety of delicious, healthy options.",
+    0.8,
+    "assets/images/chicken.png",
+  ),
+  ReduceCarbonTipp(
+    "Choose plant-based milk and dairy alternatives",
+    "Plant-based milk and dairy alternatives, such as almond milk and vegan cheese, can have a lower carbon footprint and offer numerous health benefits. By incorporating these alternatives into your diet, you can positively impact the environment and your well-being.",
+    0.9,
+    "assets/images/milk.png",
+  ),
+
 ];
