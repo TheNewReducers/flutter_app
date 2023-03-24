@@ -9,6 +9,13 @@ abstract class AppState {// Obtain shared preferences.
   static Stream<List<Receipt>> get receiptsStream => _receiptsController.stream;
 
   static List<Receipt> receipts = [];
+  static bool showIntro = true;
+
+  static void setShowIntro(bool state) async {
+    showIntro = state;
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool("showIntro", state);
+  }
 
   static void addReceipt(Receipt receipt) {
     receipts.add(receipt);
@@ -32,5 +39,6 @@ abstract class AppState {// Obtain shared preferences.
     final List<String> receiptsJson = prefs.getStringList("receipts") ?? [];
     receipts = receiptsJson.map<Receipt>((e) => Receipt.fromJson(jsonDecode(e))).toList();
     _receiptsController.add(receipts);
+    showIntro = prefs.getBool("showIntro") ?? true;
   }
 }

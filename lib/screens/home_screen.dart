@@ -4,6 +4,7 @@ import 'package:flutter_app/app_state.dart';
 import 'package:flutter_app/dialog/photo_dialog.dart';
 import 'package:flutter_app/screens/home_views/dashboard.dart';
 import 'package:flutter_app/screens/home_views/history.dart';
+import 'package:flutter_app/services/navigation_service.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    AppState.load();
+    AppState.load().then((_) => afterLoad());
     _controller.jumpToTab(widget.initialSlide);
     _controller.addListener(() {
       if (_controller.index == 1) {
@@ -32,6 +33,12 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     });
     super.initState();
+  }
+
+  void afterLoad() {
+    if (AppState.showIntro) {
+      NavigationService.instance.pushNamed("/intro");
+    }
   }
 
   void _showPhotoDialog() {

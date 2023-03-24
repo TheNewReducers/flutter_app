@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/models/receipt.dart';
 import 'package:flutter_app/screens/details_screen.dart';
 import 'package:flutter_app/screens/home_screen.dart';
+import 'package:flutter_app/screens/intro_screen.dart';
 import 'package:flutter_app/screens/tipps_screen.dart';
 import 'package:flutter_app/services/navigation_service.dart';
 
@@ -17,6 +18,10 @@ class AppRouter extends StatelessWidget {
 
     if (settings.name == '/tipps') {
       return (context) => const TippsScreen();
+    }
+
+    if (settings.name == '/intro') {
+      return (context) => const IntroScreen();
     }
 
     if (settings.name == '/details') {
