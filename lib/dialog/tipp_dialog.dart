@@ -67,6 +67,19 @@ class _TippDialogState extends State<TippDialog> {
                       Flexible(child: Text(widget.tipp.description, style: const TextStyle(fontSize: 18, height: 1.3)),)
                     ],
                   ),
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Flexible(child: Text(widget.tipp.example, style: const TextStyle(fontSize: 18, height: 1.3)),)
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  // add a button with a link: widget.tipp.link
+                  Row(
+                    children: [
+                      Flexible(child: Text(widget.tipp.link, style: const TextStyle(fontSize: 18, height: 1.3)),)
+                    ],
+                  )
                 ],
               )
             )

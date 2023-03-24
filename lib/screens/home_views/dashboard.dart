@@ -41,15 +41,29 @@ class _DashboardState extends State<Dashboard> {
     return receiptList;
   }
 
-  Map<String, double> dataMap() {
-    Map<String, double> dataMap = {};
+  Map<String, double> monthlyDataMap() {
+    Map<String, double> monthlyDataMap = {};
     for (var receipt in AppState.receipts) {
       for (var i = 0; i < receipt.items.length; i++) {
-        double base = dataMap[receipt.items[i].category] ?? 0;
-        dataMap[receipt.items[i].category] = base + receipt.items[i].carbon;
+        if (receipt.ageInDays > 30) {
+          continue;
+        }
+        double base = monthlyDataMap[receipt.items[i].category] ?? 0;
+        monthlyDataMap[receipt.items[i].category] = base + receipt.items[i].carbon;
       }
     }
-    return dataMap;
+    return monthlyDataMap;
+  }
+
+  double monthlyTotalEmission() {
+    double total = 0;
+    for (var receipt in AppState.receipts) {
+      if (receipt.ageInDays > 30) {
+        continue;
+      }
+      total += receipt.totalCarbon;
+    }
+    return total;
   }
 
   @override
@@ -59,7 +73,7 @@ class _DashboardState extends State<Dashboard> {
         stream: AppState.receiptsStream,
         initialData: AppState.receipts,
         builder: (context, snapshot) {
-          final data = dataMap();
+          final data = monthlyDataMap();
           return SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -105,7 +119,7 @@ class _DashboardState extends State<Dashboard> {
                   .fadeIn(duration: const Duration(milliseconds: 700), curve: Curves.easeInOut),
                 Padding(
                   padding: const EdgeInsets.only(top: 42, left: 14, right: 14, bottom: 24),
-                  child: AvgCarbonFootprintCard(value: 32.4).animate()
+                  child: AvgCarbonFootprintCard(value: monthlyTotalEmission()).animate()
                   .slideY(duration: const Duration(milliseconds: 700), begin: 0.12, end: 0, curve: Curves.easeInOut)
                   .fadeIn(duration: const Duration(milliseconds: 700), curve: Curves.easeInOut),
                 ),

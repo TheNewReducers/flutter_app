@@ -61,8 +61,8 @@ class AvgCarbonFootprintCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomCard(
-      title: "Monthly average emissions",
-      subtitle: "Your average carbon footprint",
+      title: "Total monthly emissions",
+      subtitle: "Your monthly carbon footprint",
       color: AppColor.cardGreen,
       shareable: true,
       child: Column(
@@ -80,7 +80,7 @@ class AvgCarbonFootprintCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 32),
             child: Column(
               children: [
-                bar("You", 65.4),
+                bar("You", value),
                 bar("Avg Switzerland", avgSwitzerland),
                 Row(
                   children: const [

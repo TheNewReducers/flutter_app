@@ -30,6 +30,10 @@ class Receipt {
     return formatter.format(createdAt);
   }
 
+  int get ageInDays {
+    return createdAt.difference(DateTime.now()).inDays;
+  }
+
   Receipt.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         title = json['title'],
