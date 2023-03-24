@@ -25,7 +25,11 @@ const List<ReduceCarbonTipp> constantsTipps = [
   //   "Food that is grown locally and in-season reduces the carbon footprint associated with transportation and storage. Transporting food over long distances generates a significant amount of greenhouse gas emissions. By buying local and seasonal produce, you can help reduce these emissions.",
   //   0.4,
   //   "assets/images/seasonal.png",
+  //   ""
   // ),
+  
+
+
   // ReduceCarbonTipp(
   //   "Choose fresh over processed",
   //   "Processed foods require more energy to produce than fresh foods. This increased energy use translates to more greenhouse gas emissions. By choosing fresh produce over processed items, you can help reduce your carbon footprint.",
