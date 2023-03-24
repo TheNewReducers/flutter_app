@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_app/app_colors.dart';
 import 'package:flutter_app/app_state.dart';
+import 'package:flutter_app/components/avg_carbon_footprint_card.dart';
 import 'package:flutter_app/components/chart.dart';
 import 'package:flutter_app/components/custom_card.dart';
 import 'package:flutter_app/components/tipp_card.dart';
@@ -102,16 +103,12 @@ class _DashboardState extends State<Dashboard> {
                 ).animate()
                   .slideY(duration: const Duration(milliseconds: 700), begin: 0.12, end: 0, curve: Curves.easeInOut)
                   .fadeIn(duration: const Duration(milliseconds: 700), curve: Curves.easeInOut),
-                // ListView.builder(
-                //       itemCount: imagePaths.length,
-                //       itemBuilder: (BuildContext context, int index) {
-                //         return CustomImageCard(
-                //           image: AssetImage(imagePaths[index]),
-                //           title: "Test",
-                //           color: AppColor.cardGreen,
-                //         );
-                //       },
-                // ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 42, left: 14, right: 14, bottom: 24),
+                  child: AvgCarbonFootprintCard(value: 32.4).animate()
+                  .slideY(duration: const Duration(milliseconds: 700), begin: 0.12, end: 0, curve: Curves.easeInOut)
+                  .fadeIn(duration: const Duration(milliseconds: 700), curve: Curves.easeInOut),
+                ),
                 const SizedBox(height: 40),
               ],
             ),

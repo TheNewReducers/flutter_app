@@ -25,46 +25,62 @@ const List<ReduceCarbonTipp> constantsTipps = [
   //   "Food that is grown locally and in-season reduces the carbon footprint associated with transportation and storage. Transporting food over long distances generates a significant amount of greenhouse gas emissions. By buying local and seasonal produce, you can help reduce these emissions.",
   //   0.4,
   //   "assets/images/seasonal.png",
-  //   ""
+  //   "Animal products and heavily processed and packaged foods, for example, typically require considerably more energy to produce than the homegrown and handmade foods at local farmers’ markets"
+  //   "https://edition.cnn.com/2022/09/14/health/seasonal-food-produce-lbg-wellness/index.html"
   // ),
-  
-
 
   // ReduceCarbonTipp(
   //   "Choose fresh over processed",
   //   "Processed foods require more energy to produce than fresh foods. This increased energy use translates to more greenhouse gas emissions. By choosing fresh produce over processed items, you can help reduce your carbon footprint.",
   //   0.2,
   //   "assets/images/canned.png",
+  //   "From data collected, potato-based products consumed the most energy, where crisps use up to 17 MJ/kg for production."
+  //   "https://www.sciencedirect.com/science/article/pii/S0924224417303394"
   // ),
+
   // ReduceCarbonTipp(
   //   "Buy organic produce",
   //   "Organic farming practices use fewer synthetic pesticides and fertilizers than conventional farming practices. The production and use of synthetic fertilizers and pesticides generate significant greenhouse gas emissions. By choosing organic produce, you can help reduce these emissions.",
   //   0.5,
   //   "assets/images/organic.png",
+  //   "The improved water holding capacity of organic soils makes it easier to deal with wet and dry intervals. Organic farmers can even have a positive climate impact, by sequestring carbon in their soils"
+  //   "https://www.natureandmore.com/en/all-about-organic/how-can-organic-farming-benefit-the-climate"
   // ),
+
   // ReduceCarbonTipp(
   //   "Choose minimally packaged items",
   //   "Packaging requires energy to produce, and most packaging materials generate greenhouse gas emissions during their production. By choosing minimally packaged items, you can help reduce these emissions.",
   //   0.1,
   //   "assets/images/trash.png",
+  //   ""
+  //   ""
   // ),
+
   //  ReduceCarbonTipp(
   //   "Embrace plant-based alternatives to sausages",
   //   "Opting for plant-based sausage alternatives can lower your environmental impact and support a healthier lifestyle. By choosing these options, you're not only reducing greenhouse gas emissions, but also benefiting from a diverse and nutrient-rich diet.",
   //   1.5,
   //   "assets/images/sausage.png",
+  //   ""
+  //   ""
   // ),
+
   // ReduceCarbonTipp(
   //   "Explore plant-based options to replace chicken",
   //   "Discover the exciting world of plant-based chicken alternatives that provide the same satisfaction while being more environmentally friendly. By choosing these alternatives, you're supporting a more sustainable food system and enjoying a variety of delicious, healthy options.",
   //   0.8,
   //   "assets/images/chicken.png",
+  //   ""
+  //   ""
   // ),
+
   // ReduceCarbonTipp(
   //   "Choose plant-based milk and dairy alternatives",
   //   "Plant-based milk and dairy alternatives, such as almond milk and vegan cheese, can have a lower carbon footprint and offer numerous health benefits. By incorporating these alternatives into your diet, you can positively impact the environment and your well-being.",
   //   0.9,
   //   "assets/images/milk.png",
+  //   ""
+  //   ""
   // ),
 
 ];
