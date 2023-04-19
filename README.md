@@ -27,3 +27,5 @@ CarbonDiet provides users with a comprehensive summary of the environmental impa
 2. Navigate to the project directory:`cd flutter_app`
 3. Install dependencies: flutter pub get
 4. Run the app: `flutter run`
+
+_Please note that the evaluation of the receipts no longer works, because the free use of the API's has expired._ 
